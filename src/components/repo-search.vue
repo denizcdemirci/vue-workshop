@@ -9,48 +9,47 @@
       </div>
     </div>
 
-    <table class="table table-striped" v-if="total_count >= 1">
+    <table class="table table-striped" v-if="response.length >= 1">
       <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Stars</th>
-        <th>Watchers</th>
-        <th>Language</th>
-      </tr>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Stars</th>
+          <th>Watchers</th>
+          <th>Language</th>
+        </tr>
       </thead>
       <tbody>
-      <tr v-for="repo in response">
-        <td>{{ repo.owner.login }}/{{ repo.name }}</td>
-        <td>{{ repo.description }}</td>
-        <td>{{ repo.stargazers_count }}</td>
-        <td>{{ repo.watchers_count }}</td>
-        <td>{{ repo.language }}</td>
-      </tr>
+        <tr v-for="(repo, key) in response">
+          <th>{{ key + 1 }}</th>
+          <td><a v-bind:href="'user/' + repo.owner.login">{{ repo.owner.login }}</a>/<a v-bind:href="'repo/' + repo.full_name">{{ repo.name }}</a></td>
+          <td>{{ repo.description }}</td>
+          <td>{{ repo.stargazers_count }}</td>
+          <td>{{ repo.watchers_count }}</td>
+          <td>{{ repo.language }}</td>
+        </tr>
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
-  import axios from 'axios'
   export default {
     data () {
       return {
         reponame: '',
-        total_count: 0,
         response: ''
       }
     },
     methods: {
-      searchRepo () {
+      searchRepo() {
         if (this.reponame.length >= 4) {
           axios.get('https://api.github.com/search/repositories?q=' + this.reponame).then(response => {
             this.response = response.data.items;
-            this.total_count = response.data.total_count;
           }).catch(error => {
             console.log(error);
-          })
+          });
         }
       }
     }

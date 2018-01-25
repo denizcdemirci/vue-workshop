@@ -9,32 +9,32 @@
       </div>
     </div>
 
-    <table class="table table-striped" v-if="total_count >= 1">
+    <table class="table table-striped" v-if="response.length >= 1">
       <thead>
-      <tr>
-        <th>Avatar</th>
-        <th>Username</th>
-        <th>GitHub Profile</th>
-      </tr>
+        <tr>
+          <th>#</th>
+          <th>Avatar</th>
+          <th>Username</th>
+          <th>GitHub Profile</th>
+        </tr>
       </thead>
       <tbody>
-      <tr v-for="user in response">
-        <td><img class="rounded" v-bind:src="user.avatar_url"></td>
-        <td>{{ user.login }}</td>
-        <td><a v-bind:href="user.html_url" target="_blank">Profile</a></td>
-      </tr>
+        <tr v-for="(user, key) in response">
+          <th>{{ key + 1 }}</th>
+          <td><img class="rounded" v-bind:src="user.avatar_url"></td>
+          <td>{{ user.login }}</td>
+          <td><a v-bind:href="'user/' + user.login">View Profile</a></td>
+        </tr>
       </tbody>
     </table>
   </div>
 </template>
 
 <script>
-  import axios from 'axios'
   export default {
     data () {
       return {
         username: '',
-        total_count: 0,
         response: ''
       }
     },
@@ -43,10 +43,9 @@
         if (this.username.length >= 4) {
           axios.get('https://api.github.com/search/users?q=' + this.username).then(response => {
             this.response = response.data.items;
-            this.total_count = response.data.total_count;
           }).catch(error => {
             console.log(error);
-          })
+          });
         }
       }
     }

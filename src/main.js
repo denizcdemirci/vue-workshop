@@ -1,7 +1,8 @@
 import Vue from 'vue'
-import axios from 'axios'
 import App from './App'
 import router from './router'
+
+window.axios = require('axios');
 
 Vue.config.productionTip = false;
 
