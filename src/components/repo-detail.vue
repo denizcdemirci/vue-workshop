@@ -5,7 +5,7 @@
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <strong><a v-bind:href="'/user/' + $route.params.username">{{ $route.params.username }}</a>/{{ response.name }} - <a v-bind:href="response.html_url" target="_blank">View on GitHub</a></strong>
+        <strong><a v-bind:href="'./#/user/' + $route.params.username">{{ $route.params.username }}</a>/{{ response.name }} - <a v-bind:href="response.html_url" target="_blank">View on GitHub</a></strong>
       </div>
       <table class="table">
         <tr>
@@ -18,7 +18,7 @@
         </tr>
         <tr>
           <td>Owner Username:</td>
-          <td><a v-bind:href="'/user/' + $route.params.username">{{ $route.params.username }}</a></td>
+          <td><a v-bind:href="'./#/user/' + $route.params.username">{{ $route.params.username }}</a></td>
         </tr>
         <tr>
           <td>Created Date:</td>

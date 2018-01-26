@@ -23,7 +23,7 @@
           <th>{{ key + 1 }}</th>
           <td><img class="rounded" v-bind:src="user.avatar_url"></td>
           <td>{{ user.login }}</td>
-          <td><a v-bind:href="'user/' + user.login">View Profile</a></td>
+          <td><a v-bind:href="'./#/user/' + user.login">View Profile</a></td>
         </tr>
       </tbody>
     </table>

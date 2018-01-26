@@ -10,7 +10,7 @@
       <div class="col-md-9">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <strong>{{ response.name }} - {{ response.login }} - <a v-bind:href="'/repo/' + response.login">View Repos</a> - <a v-bind:href="response.html_url" target="_blank">View GitHub Profile</a></strong>
+            <strong>{{ response.name }} - {{ response.login }} - <a v-bind:href="'./#/repo/' + response.login">View Repos</a> - <a v-bind:href="response.html_url" target="_blank">View GitHub Profile</a></strong>
           </div>
           <table class="table">
             <tr>
