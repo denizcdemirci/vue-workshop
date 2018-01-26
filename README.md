@@ -1,6 +1,12 @@
-# workshop
+# Vue Workshop
 
-> A Vue.js project
+> A basic Vue.js project
+
+
+## API Link
+
+https://developer.github.com/v3/search/
+
 
 ## Build Setup
 
