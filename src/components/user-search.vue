@@ -41,7 +41,11 @@
     methods: {
       searchUser () {
         if (this.username.length >= 4) {
-          axios.get('https://api.github.com/search/users?q=' + this.username).then(response => {
+          axios.get('https://api.github.com/search/users', {
+            params: {
+              q: this.username
+            }
+          }).then(response => {
             this.response = response.data.items;
           }).catch(error => {
             console.log(error);

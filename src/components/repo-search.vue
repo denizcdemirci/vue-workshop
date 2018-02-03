@@ -23,7 +23,7 @@
       <tbody>
         <tr v-for="(repo, key) in response">
           <th>{{ key + 1 }}</th>
-          <td><a v-bind:href="'./#/user/' + repo.owner.login">{{ repo.owner.login }}</a>/<a v-bind:href="'repo/' + repo.full_name">{{ repo.name }}</a></td>
+          <td><a v-bind:href="'./#/user/' + repo.owner.login">{{ repo.owner.login }}</a>/<a v-bind:href="'./#/repo/' + repo.full_name">{{ repo.name }}</a></td>
           <td>{{ repo.description }}</td>
           <td>{{ repo.stargazers_count }}</td>
           <td>{{ repo.watchers_count }}</td>
@@ -45,7 +45,11 @@
     methods: {
       searchRepo() {
         if (this.reponame.length >= 4) {
-          axios.get('https://api.github.com/search/repositories?q=' + this.reponame).then(response => {
+          axios.get('https://api.github.com/search/repositories', {
+              params: {
+                q: this.reponame
+              }
+            }).then(response => {
             this.response = response.data.items;
           }).catch(error => {
             console.log(error);
